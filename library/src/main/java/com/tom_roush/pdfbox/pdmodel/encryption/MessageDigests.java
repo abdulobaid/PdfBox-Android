@@ -36,7 +36,7 @@ final class MessageDigests
     {
         try
         {
-            return MessageDigest.getInstance("MD5");
+            return MessageDigest.getInstance("SHA-256");
         }
         catch (NoSuchAlgorithmException e)
         {
@@ -52,7 +52,7 @@ final class MessageDigests
     {
         try
         {
-            return MessageDigest.getInstance("SHA-1");
+            return MessageDigest.getInstance("SHA-256");
         }
         catch (NoSuchAlgorithmException e)
         {
