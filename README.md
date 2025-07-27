@@ -16,6 +16,9 @@ Add the following to dependency to `build.gradle`:
 dependencies {
     implementation 'com.tom-roush:pdfbox-android:2.0.27.0'
 }
+dependencies {
+    implementation 'com.github.abdulobaid:PdfBox-Android:2.0.27.3'
+}
 ```
 
 Before calls to PDFBox are made it is required to initialize the library's resource loader. Add the following line before calling PDFBox methods:
@@ -40,6 +43,9 @@ To include the JP2Android library, add the following to your project's Gradle `d
 ```gradle
 dependencies {
     implementation 'com.gemalto.jp2:jp2-android:1.0.3'
+}
+dependencies {
+     implementation 'dev.keiji.jp2:jp2-android:1.0.5'
 }
 ```
 

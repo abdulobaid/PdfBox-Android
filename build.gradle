@@ -4,11 +4,11 @@ defaultTasks 'clean','build','connectedCheck'
 buildscript {
     repositories {
        google()
-        jcenter() // jp2-android
+       // jcenter() // jp2-android
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'com.android.tools.build:gradle:8.3.2'
     }
 }
 
@@ -19,7 +19,7 @@ allprojects {
 //        Enable downloading snapshot versions
 //        maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
         google()
-        jcenter()
+       // jcenter()
         maven { url "https://jitpack.io" }
         mavenCentral()
     }
