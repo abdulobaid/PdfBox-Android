@@ -7,6 +7,7 @@ tasks.register('androidJavadocs', Javadoc) {
     failOnError false
     source = android.sourceSets.main.java.sourceFiles
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    dependsOn("generateDebugRFile", "generateReleaseRFile")
 
     // disable the crazy super-strict doclint tool in Java 8
     if (JavaVersion.current().isJava8Compatible()) {

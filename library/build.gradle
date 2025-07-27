@@ -59,7 +59,17 @@ android {
         }
     }
 }
-
+task androidJavadocs(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    // Fix: Add explicit dependencies
+    dependsOn("generateDebugRFile", "generateReleaseRFile")
+    // OR: mustRunAfter("generateDebugRFile", "generateReleaseRFile")
+}
+task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+    archiveClassifier.set("javadoc")
+    from androidJavadocs.destinationDir
+}
 // Test output from https://stackoverflow.com/questions/3963708/gradle-how-to-display-test-results-in-the-console-in-real-time
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
@@ -108,4 +118,4 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.5.1'
 }
 
-apply from: 'maven-publish.gradle'
+//apply from: 'maven-publish.gradle'
