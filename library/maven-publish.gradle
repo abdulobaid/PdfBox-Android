@@ -1,5 +1,7 @@
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
+//apply plugin: 'io.github.gradle-nexus.publish-plugin'
+//id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
@@ -40,11 +42,11 @@ task androidJavadocs(type: Javadoc) {
     exclude '**/R.java'
 }
 
-//afterEvaluate {
-//    androidJavadocs.classpath += files(android.libraryVariants.collect { variant ->
-//        variant.javaCompileProvider.get().classpath.files
-//    })
-//}
+afterEvaluate {
+    androidJavadocs.classpath += files(android.libraryVariants.collect { variant ->
+        variant.javaCompileProvider.get().classpath.files
+    })
+}
 
 //afterEvaluate {
 //    tasks.myJavadocTask.classpath += files(project.android.getBootClasspath())
@@ -95,17 +97,29 @@ def pomConfig = {
         url "https://github.com/abdulobaid/PdfBox-Android"
     }
 }
-
-project.afterEvaluate {
+//publishing {
+//    publications {
+//        maven(MavenPublication) {
+//            from components.java
+//            artifact sourcesJar  // Optional
+//        }
+//    }
+//}
+ project.afterEvaluate {
     publishing {
         repositories {
             maven {
-                def releaseRepo = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-                def snapshotRepo = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+                def releaseRepo = "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/"
+                def snapshotRepo = "https://central.sonatype.com/repository/maven-snapshots/"
+                //def releaseRepo = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                //def snapshotRepo = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+
+
                 url = isReleaseVersion ? releaseRepo : snapshotRepo
                 credentials {
                     username = project.hasProperty('ossrhUsername') ? ossrhUsername : System.getenv('OSSRH_USERNAME')
                     password = project.hasProperty('ossrhPassword') ? ossrhPassword : System.getenv('OSSRH_PASSWORD')
+                    //println('\n fffffm22 ' + username)
                 }
             }
         }
@@ -138,11 +152,18 @@ project.afterEvaluate {
         }
     }
 
-    signing {
-        def signingKeyId = findProperty("signingKeyId")
-        def signingKey = findProperty("signingKey")
-        def signingPassword = findProperty("signingPassword")
-        useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
-        sign publishing.publications.maven
-    }
+     signing {
+         required { !System.getenv('JITPACK') } // Disable if JitPack builds
+         def signingKeyId = findProperty("signingKeyId")
+         def signingKey = findProperty("signingKey")
+         def signingPassword = findProperty("signingPassword")
+
+         //println('\n fffffm ' + signingKeyId)
+         //println('\n fffffm2 ' + signingKey)
+         //println('\n fffffm3 ' + signingPassword)
+
+         useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
+         sign publishing.publications.maven
+
+     }
 }
