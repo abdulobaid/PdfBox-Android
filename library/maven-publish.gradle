@@ -5,7 +5,8 @@ ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 task androidJavadocs(type: Javadoc) {
     failOnError false
-    source = android.sourceSets.main.java.sourceFiles
+   // source = android.sourceSets.main.java.sourceFiles
+    source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
     // Add other dependencies
     //classpath += configurations.implementation
