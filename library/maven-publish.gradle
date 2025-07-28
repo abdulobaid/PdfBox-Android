@@ -74,6 +74,7 @@ task androidSourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
 }
 
+
 def pomConfig = {
     url "https://github.com/abdulobaid/PdfBox-Android"
     licenses {
