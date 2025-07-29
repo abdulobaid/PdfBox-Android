@@ -1,7 +1,5 @@
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
-//apply plugin: 'io.github.gradle-nexus.publish-plugin'
-//id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
@@ -98,18 +96,12 @@ def pomConfig = {
         url "https://github.com/abdulobaid/PdfBox-Android"
     }
 }
-//publishing {
-//    publications {
-//        maven(MavenPublication) {
-//            from components.java
-//            artifact sourcesJar  // Optional
-//        }
-//    }
-//}
+
  project.afterEvaluate {
     publishing {
         repositories {
             maven {
+                name = 'ossrh-staging-api'
                 def releaseRepo = "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/"
                 def snapshotRepo = "https://central.sonatype.com/repository/maven-snapshots/"
                 //def releaseRepo = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
@@ -121,6 +113,8 @@ def pomConfig = {
                     username = project.hasProperty('ossrhUsername') ? ossrhUsername : System.getenv('OSSRH_USERNAME')
                     password = project.hasProperty('ossrhPassword') ? ossrhPassword : System.getenv('OSSRH_PASSWORD')
                     //println('\n fffffm22 ' + username)
+                    //println('\n fffffm22 ' + project.PUBLISH_VERSION)
+
                 }
             }
         }
@@ -154,17 +148,49 @@ def pomConfig = {
     }
 
      signing {
-         required { !System.getenv('JITPACK') } // Disable if JitPack builds
-         def signingKeyId = findProperty("signingKeyId")
-         def signingKey = findProperty("signingKey")
-         def signingPassword = findProperty("signingPassword")
-
-         //println('\n fffffm ' + signingKeyId)
-         //println('\n fffffm2 ' + signingKey)
-         //println('\n fffffm3 ' + signingPassword)
-
-         useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
-         sign publishing.publications.maven
+         required false
+//         required { !System.getenv('JITPACK') } // Disable if JitPack builds
+//         def signingKeyId = findProperty("signingKeyId")
+//         def signingKey = findProperty("signingKey")
+//         def signingPassword = findProperty("signingPassword")
+//
+//         //println('\n fffffm ' + signingKeyId)
+//         //println('\n fffffm2 ' + signingKey)
+//         //println('\n fffffm3 ' + signingPassword)
+//
+//         useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
+//         sign publishing.publications.maven
 
      }
 }
+
+
+//import com.vanniktech.maven.publish.*
+//mavenPublish {
+   // androidVariantToPublish = "release"
+    //configure(new com.vanniktech.maven.publish.AndroidSingleVariantLibrary("release", true, true))
+//}
+
+
+
+//publishing {
+//    publications {
+//        maven(MavenPublication) {
+//
+//        }
+//    }
+//}
+
+//afterEvaluate{
+//    mavenPublishing {
+//
+//
+//    }
+//}
+//mavenPublishing {
+//   // configure(new com.vanniktech.maven.publish.AndroidSingleVariantLibrary("release", true, true))
+//    configure(new com.vanniktech.maven.publish.AndroidSingleVariantLibrary())
+//    publishToMavenCentral()
+//
+//    signAllPublications()
+//}

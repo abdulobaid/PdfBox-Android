@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+    compileSdk Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+    //compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
 
     defaultConfig {
         applicationId 'com.tom_roush.pdfbox.sample'
@@ -34,6 +35,7 @@ dependencies {
     implementation project(':library')
 //    implementation "com.tom-roush:pdfbox-android:${project.VERSION_NAME}"
     implementation "androidx.multidex:multidex:2.0.1"
+   // implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
 
     // Optional dependencies
@@ -41,4 +43,5 @@ dependencies {
     // Read JPX images
     // implementation 'com.gemalto.jp2:jp2-android:1.0.3'
     implementation 'dev.keiji.jp2:jp2-android:1.0.5'
+   // implementation "org.jetbrains.kotlin:kotlin-stdlib:1.8.22"
 }

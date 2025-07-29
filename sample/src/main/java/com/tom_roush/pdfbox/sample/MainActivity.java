@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -43,8 +45,8 @@ import com.tom_roush.pdfbox.text.PDFTextStripper;
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-
 public class MainActivity extends Activity {
+//public class MainActivity extends AppCompatActivity {
     File root;
     AssetManager assetManager;
     Bitmap pageImage;

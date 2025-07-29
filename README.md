@@ -1,7 +1,11 @@
 PdfBox-Android
 ==============
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.abdulobaid/pdfbox-android/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/io.github.abdulobaid/pdfbox-android/)
-[![Build Status](https://github.com/abdulobaid/PdfBox-Android/actions/workflows/android-ci.yml/badge.svg?branch=master)](https://github.com/abdulobaid/PdfBox-Android/actions)
+
+[//]: # ([![Maven Central]&#40;https://maven-badges.herokuapp.com/maven-central/io.github.abdulobaid/pdfbox-android/badge.svg?style=flat&#41;]&#40;https://maven-badges.herokuapp.com/maven-central/io.github.abdulobaid/pdfbox-android/&#41;)
+![Maven Central Version](https://img.shields.io/maven-central/v/io.github.abdulobaid/pdfbox-android)
+
+[//]: # ([![Build Status]&#40;https://github.com/abdulobaid/PdfBox-Android/actions/workflows/android-ci.yml/badge.svg?branch=master&#41;]&#40;https://github.com/abdulobaid/PdfBox-Android/actions&#41;)
+[![](https://jitpack.io/v/abdulobaid/PdfBox-Android.svg)](https://jitpack.io/#abdulobaid/PdfBox-Android)
 
 A port of Apache's PdfBox library to be usable on Android. Most features should be implemented by now. Feature requests can be added to the issue tracker. Stable releases can be added as a Gradle dependency from Maven Central.
 
@@ -17,14 +21,17 @@ dependencies {
     implementation 'com.tom-roush:pdfbox-android:2.0.27.0'
 }
 dependencies {
-    implementation 'com.github.abdulobaid:PdfBox-Android:2.0.27.3'
+    implementation 'com.github.abdulobaid:PdfBox-Android:2.0.27.13'
+}
+dependencies {
+    implementation 'io.github.abdulobaid:pdfbox-android:2.0.27.13'
 }
 ```
 
 Before calls to PDFBox are made it is required to initialize the library's resource loader. Add the following line before calling PDFBox methods:
 
 ```java
-PDFBoxResourceLoader.init(getApplicationContext());
+//  PDFBoxResourceLoader.init(getApplicationContext());
 ```
 
 An example app is located in the `sample` directory and includes examples of common tasks.

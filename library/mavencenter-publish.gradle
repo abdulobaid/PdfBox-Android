@@ -1,0 +1,39 @@
+//apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
+
+mavenPublishing {
+
+    publishToMavenCentral(true)
+    signAllPublications()
+
+    coordinates("io.github.abdulobaid", "pdfbox-android", VERSION_NAME)
+
+    pom {
+        name = "PdfBox-Android"
+        description = "repo"
+        inceptionYear = "2020"
+        url = "https://github.com/abdulobaid/PdfBox-Android/"
+        licenses {
+            license {
+                name = "The Apache License, Version 2.0"
+                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                distribution = "repo"
+            }
+        }
+        developers {
+            developer {
+                id = "abdulobaid"
+                name = "abdul obaid"
+                url = "https://github.com/abdulobaid/"
+            }
+        }
+        scm {
+            url = "https://github.com/abdulobaid/PdfBox-Android/"
+            connection = "scm:git:git@github.com:abdulobaid/PdfBox-Android.git"
+            developerConnection = "scm:git:ssh@github.com:abdulobaid/PdfBox-Android.git"
+        }
+    }
+
+}
