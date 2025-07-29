@@ -101,21 +101,21 @@ def pomConfig = {
     publishing {
         repositories {
             maven {
-                name = 'ossrh-staging-api'
-                def releaseRepo = "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/"
-                def snapshotRepo = "https://central.sonatype.com/repository/maven-snapshots/"
-                //def releaseRepo = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-                //def snapshotRepo = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-
-
-                url = isReleaseVersion ? releaseRepo : snapshotRepo
-                credentials {
-                    username = project.hasProperty('ossrhUsername') ? ossrhUsername : System.getenv('OSSRH_USERNAME')
-                    password = project.hasProperty('ossrhPassword') ? ossrhPassword : System.getenv('OSSRH_PASSWORD')
-                    //println('\n fffffm22 ' + username)
-                    //println('\n fffffm22 ' + project.PUBLISH_VERSION)
-
-                }
+                //name = 'ossrh-staging-api'
+               // def releaseRepo = "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/"
+               // def snapshotRepo = "https://central.sonatype.com/repository/maven-snapshots/"
+//                def releaseRepo = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+//                def snapshotRepo = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+//
+//
+//                url = isReleaseVersion ? releaseRepo : snapshotRepo
+//                credentials {
+//                    username = project.hasProperty('ossrhUsername') ? ossrhUsername : System.getenv('OSSRH_USERNAME')
+//                    password = project.hasProperty('ossrhPassword') ? ossrhPassword : System.getenv('OSSRH_PASSWORD')
+//                    //println('\n fffffm22 ' + username)
+//                    //println('\n fffffm22 ' + project.PUBLISH_VERSION)
+//
+//                }
             }
         }
         publications {
